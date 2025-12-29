@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lagos Rent AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        h2 { color: #333; margin-bottom: 20px; }
+        label { display: block; text-align: left; margin: 10px 0 5px; font-weight: 600; color: #555; }
+        select, input {
+            width: 95%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            transition: 0.3s;
+        }
+        select:focus, input:focus { border-color: #0072ff; }
+        button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            background: #0072ff;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover { background: #005bb5; }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #eef7ff;
+            color: #0072ff;
+            font-weight: bold;
+            border-radius: 8px;
+            border: 1px solid #ccdfff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>🇳🇬 Lagos Rent AI</h2>
+        <p>Predict house rent instantly.</p>
+        
+        <form action="/predict" method="post">
+            <label>📍 Location</label>
+            <select name="location">
+                <option value="Ikorodu_Selewu">Ikorodu (Selewu)</option>
+                <option value="Lekki_Phase1">Lekki Phase 1</option>
+                <option value="Surulere">Surulere</option>
+                <option value="Ikeja_GRA">Ikeja GRA</option>
+                <option value="Yaba">Yaba (Tech Hub)</option>
+                <option value="Victoria_Island">Victoria Island</option>
+                <option value="Ajah">Ajah</option>
+                <option value="Festac">Festac</option>
+            </select>
+
+            <label>🛏️ Bedrooms</label>
+            <input type="number" name="bedrooms" placeholder="e.g. 1, 2, 3" required>
+
+            <label>✨ POP Ceiling?</label>
+            <select name="pop">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label>🛣️ Close to Main Road?</label>
+            <select name="road">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <button type="submit">Predict Price</button>
+        </form>
+
+        {% if prediction_text %}
+        <div class="result">{{ prediction_text }}</div>
+        {% endif %}
+    </div>
+
+</body>
+</html>
